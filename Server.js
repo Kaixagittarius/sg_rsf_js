@@ -1,31 +1,34 @@
 var express = require("./node_modules/express");
 var app = express();
 var router = express.Router();
-var path = __dirname + '/views/';
 
 var ListenPort = 3000;
+
+app.use(express.static("assets"));
 
 router.use(function (req, res, next){
 	console.log("/" + req.method);
 	next();
 });
 
+var staticHtmlPath = __dirname + '/views/';
+
 router.get("/", function(req, res){
-	res.sendFile(path + "index.html");
+	res.sendFile(staticHtmlPath + "index.html");
 });
 
 router.get("/about", function(req, res){
-	res.sendFile(path + "about.html");
+	res.sendFile(staticHtmlPath + "about.html");
 });
 
 router.get("/contact", function(req, res){
-	res.sendFile(path + "contact.html");
+	res.sendFile(staticHtmlPath + "contact.html");
 });
 
 app.use("/", router);
 
 app.use("*", function(req, res){
-	res.sendFile(path + "404.html");
+	res.sendFile(staticHtmlPath + "404.html");
 });
 
 app.listen(ListenPort, function(){

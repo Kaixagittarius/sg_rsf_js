@@ -1,36 +1,17 @@
-var express = require("./node_modules/express");
+var express = require('./node_modules/express');
 var app = express();
-var router = express.Router();
 
 var ListenPort = 3000;
 
-app.use(express.static("assets"));
+app.use('/scripts', express.static(__dirname + '/scripts'));
+app.use('/css', express.static(__dirname + '/assets/css'));
+app.use('/img', express.static(__dirname + '/assets/img'));
+app.use('/views', express.static(__dirname + '/views'));
 
-router.use(function (req, res, next){
-	console.log("/" + req.method);
-	next();
+app.all('/*', function(req, res, next) {
+    res.sendFile('index.html', { root: __dirname });
 });
 
-var staticHtmlPath = __dirname + '/views/';
-
-router.get("/", function(req, res){
-	res.sendFile(staticHtmlPath + "index.html");
-});
-
-router.get("/about", function(req, res){
-	res.sendFile(staticHtmlPath + "about.html");
-});
-
-router.get("/contact", function(req, res){
-	res.sendFile(staticHtmlPath + "contact.html");
-});
-
-app.use("/", router);
-
-app.use("*", function(req, res){
-	res.sendFile(staticHtmlPath + "404.html");
-});
-
-app.listen(ListenPort, function(){
+app.listen(ListenPort, function() {
 	console.log("Live at Port " + ListenPort.toString());
 });

@@ -5,6 +5,9 @@
     "start": "node Server.js"
   },
   "dependencies": {
-    "express": "latest"
+    "angular": "^1.6.5",
+    "angularjs": "0.0.1",
+    "express": "latest",
+    "mssql": "^4.0.4"
   }
 }

@@ -1,0 +1,16 @@
+{
+  "development": {
+    "username": "RSF_GOLIVARES",
+    "password": "123456",
+    "database": "SG_RSF",
+    "host": "localhost",
+    "dialect": "mssql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mssql"
+  }
+}
